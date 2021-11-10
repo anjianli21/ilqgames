@@ -128,6 +128,7 @@ bike_x0 = np.array([
     [bike_v0]
 ])
 
+# Store the states of all system
 stacked_x0 = np.concatenate([car1_x0, car2_x0, bike_x0], axis=0)
 
 car1_Ps = [np.zeros((car1._u_dim, dynamics._x_dim))] * HORIZON_STEPS
@@ -317,7 +318,7 @@ planner = RHCPlanner(dynamics,
                      [car1_Ps, car2_Ps, bike_Ps], #solver_init._Ps,
                      [car1_alphas, car2_alphas, bike_alphas], #solver_init._alphas,
                      alpha_scaling=0.1,
-                     max_iteration=10,
+                     max_iteration=10, # For each receding horizon, ilqgame iterates 10 times
                      reference_deviation_weight=None,
                      logger=logger,
                      visualizer=visualizer,
