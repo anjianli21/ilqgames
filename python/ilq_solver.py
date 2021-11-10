@@ -303,7 +303,7 @@ class ILQSolver(object):
 
         # Tolerance for comparing operating points. If all costs changes
         # within this tolerance percentage then we've converged.
-        TOLERANCE_PERCENTAGE = 0.001
+        TOLERANCE_PERCENTAGE = 1e-3 # 1e-3
         for ii in range(self._num_players):
             last_cost = sum(self._last_operating_point[2][ii]).item()
             current_cost = sum(self._current_operating_point[2][ii]).item()

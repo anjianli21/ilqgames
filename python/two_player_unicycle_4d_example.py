@@ -56,8 +56,8 @@ import sys
 import signal
 
 # General parameters.
-TIME_HORIZON = 1.0   # s
-TIME_RESOLUTION = 0.2 # s, default: 0.1
+TIME_HORIZON = 2.5   # s
+TIME_RESOLUTION = 0.1 # s, default: 0.1
 HORIZON_STEPS = int(TIME_HORIZON / TIME_RESOLUTION)
 LOG_DIRECTORY = "./logs/two_player_zero_sum/"
 MAX_V = 15.0 # m/s
@@ -124,7 +124,8 @@ v_cost_upper = SemiquadraticCost(
 v_cost_lower = SemiquadraticCost(
     dimension=3, threshold=0, oriented_right=False, name="v_cost_lower")
 
-OBSTACLE_WEIGHT = 100.0 # HJI: 100
+# OBSTACLE_WEIGHT = 100.0 # HJI: 100
+OBSTACLE_WEIGHT = 200.0 # HJI: 100
 GOAL_WEIGHT = 100.0 # HJI: 400
 D_WEIGHT = 1000.0 # HJI: 1000
 U_WEIGHT = 1.0 # HJI: 100
@@ -180,8 +181,8 @@ solver = ILQSolver(dynamics,
                    x0,
                    [P1s, P2s],
                    [alpha1s, alpha2s],
-                   0.01,
-                   100,
+                   0.01, # 0.01
+                   2000,
                    None,
                    logger,
                    visualizer)

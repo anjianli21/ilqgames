@@ -119,3 +119,6 @@ ENV/
 # ccls
 .ccls-cache/
 compile_commands.json
+
+# Anjian result
+result_plots/
