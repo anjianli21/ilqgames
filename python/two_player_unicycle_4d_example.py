@@ -56,8 +56,8 @@ import sys
 import signal
 
 # General parameters.
-TIME_HORIZON = 10.0   # s
-TIME_RESOLUTION = 0.1 # s
+TIME_HORIZON = 1.0   # s
+TIME_RESOLUTION = 0.2 # s, default: 0.1
 HORIZON_STEPS = int(TIME_HORIZON / TIME_RESOLUTION)
 LOG_DIRECTORY = "./logs/two_player_zero_sum/"
 MAX_V = 15.0 # m/s
@@ -75,8 +75,8 @@ v0 = 5.0             # 5 m/s initial speed
 # theta0 = np.pi / 6
 # v0 = 5.0
 
-x0 = np.array([[0.0],
-               [0.0],
+x0 = np.array([[30.0],
+               [30.0],
                [theta0],
                [v0]])
 
@@ -154,6 +154,7 @@ player2_cost.add_cost(dvx_cost, 1, D_WEIGHT)
 player2_cost.add_cost(dvy_cost, 1, D_WEIGHT)
 
 # Visualizer.
+# visualizer = None
 visualizer = Visualizer(
     [(0, 1)],
     [goal_cost] + obstacle_costs,
@@ -180,6 +181,7 @@ solver = ILQSolver(dynamics,
                    [P1s, P2s],
                    [alpha1s, alpha2s],
                    0.01,
+                   100,
                    None,
                    logger,
                    visualizer)

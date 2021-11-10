@@ -40,6 +40,7 @@ Author(s): David Fridovich-Keil ( dfk@eecs.berkeley.edu )
 import numpy as np
 import torch
 import matplotlib.pyplot as plt
+import time
 
 from player_cost import PlayerCost
 from reference_deviation_cost import ReferenceDeviationCost
@@ -55,6 +56,7 @@ class ILQSolver(object):
                  Ps,
                  alphas,
                  alpha_scaling=0.05,
+                 max_iteration=50,
                  reference_deviation_weight=None,
                  logger=None,
                  visualizer=None,
@@ -62,7 +64,6 @@ class ILQSolver(object):
         """
         Initialize from dynamics, player costs, current state, and initial
         guesses for control strategies for both players.
-
         :param dynamics: two-player dynamical system
         :type dynamics: TwoPlayerDynamicalSystem
         :param player_costs: list of cost functions for all players
@@ -75,6 +76,8 @@ class ILQSolver(object):
         :type alphas: [[np.array]]
         :param alpha_scaling: step size on the alpha
         :type alpha_scaling: float
+        :param max_iteration: maximum number of iterations
+        :type max_iteration: int
         :param reference_deviation_weight: weight on reference deviation cost
         :type reference_deviation_weight: None or float
         :param logger: logging utility
@@ -93,7 +96,7 @@ class ILQSolver(object):
         self._horizon = len(Ps[0])
         self._num_players = len(player_costs)
 
-        # Current and previous operating points (states/controls) for use
+        # Current and previous operating points (states/controls/costs) for use
         # in checking convergence.
         self._last_operating_point = None
         self._current_operating_point = None
@@ -108,17 +111,22 @@ class ILQSolver(object):
         self._visualizer = visualizer
         self._logger = logger
 
+        # Maximum number of iterations
+        self._max_iteration = max_iteration
+
         # Log some of the paramters.
         if self._logger is not None:
             self._logger.log("alpha_scaling", self._alpha_scaling)
             self._logger.log("horizon", self._horizon)
             self._logger.log("x0", self._x0)
 
-    def run(self):
+    def run(self, verbose=True):
         """ Run the algorithm for the specified parameters. """
         iteration = 0
+        max_iteration = self._max_iteration
 
-        while not self._is_converged():
+        while (not self._is_converged_cost(verbose)) and (iteration<=max_iteration):
+            start = time.time()
             # (1) Compute current operating point and update last one.
             xs, us, costs = self._compute_operating_point()
             self._last_operating_point = self._current_operating_point
@@ -145,20 +153,21 @@ class ILQSolver(object):
                         self._last_operating_point[1][ii]
 
             # Visualization.
-            if self._visualizer is not None:
+            if (self._visualizer is not None) and \
+               ((np.mod(iteration,10)==0) or (iteration == max_iteration)):
                 traj = {"xs" : xs}
-                for ii in range(self._num_players):
-                    traj["u%ds" % (ii + 1)] = us[ii]
+                # for ii in range(self._num_players):
+                #     traj["u%ds" % (ii + 1)] = us[ii]
 
                 self._visualizer.add_trajectory(iteration, traj)
 #                self._visualizer.plot_controls(1)
-#                plt.pause(0.01)
+#                plt.pause(0.001)
 #                plt.clf()
 #                self._visualizer.plot_controls(2)
-#                plt.pause(0.01)
+#                plt.pause(0.001)
 #                plt.clf()
                 self._visualizer.plot()
-                plt.pause(0.01)
+                plt.pause(0.001)
                 plt.clf()
 
             # (2) Linearize about this operating point. Make sure to
@@ -197,7 +206,8 @@ class ILQSolver(object):
 
             # Accumulate total costs for both players.
             total_costs = [sum(costis).item() for costis in costs]
-            print("Total cost for all players: ", total_costs)
+            if verbose:
+                print("Total cost for all players: ", total_costs)
 
             # Log everything.
             if self._logger is not None:
@@ -214,10 +224,12 @@ class ILQSolver(object):
             self._linesearch()
             iteration += 1
 
+            end = time.time()
+            # print("Elapsed time: ", end - start)
+
     def _compute_operating_point(self):
         """
         Compute current operating point by propagating through dynamics.
-
         :return: states, controls for all players (list of lists), and
             costs over time (list of lists), i.e. (xs, us, costs)
         :rtype: [np.array], [[np.array]], [[torch.Tensor(1, 1)]]
@@ -242,9 +254,10 @@ class ILQSolver(object):
                           self._Ps[ii][k], self._alphas[ii][k])
                  for ii in range(self._num_players)]
 
-            # Clip u1 and u2.
-#            for ii in range(self._num_players):
-#                u[ii] = self._u_constraints[ii].clip(u[ii])
+            # Clip controls.
+            if self._u_constraints is not None:
+                for ii in range(self._num_players):
+                    u[ii] = self._u_constraints[ii].clip(u[ii])
 
             for ii in range(self._num_players):
                 us[ii].append(u[ii])
@@ -264,19 +277,40 @@ class ILQSolver(object):
         """ Linesearch for both players separately. """
         pass
 
-    def _is_converged(self):
-        """ Check if the last two operating points are close enough. """
+    def _is_converged_state(self, verbose=True):
+        """ Check if the last two operating points are close enough using states. """
         if self._last_operating_point is None:
             return False
 
         # Tolerance for comparing operating points. If all states changes
         # within this tolerance in the Euclidean norm then we've converged.
-        TOLERANCE = 1e-4
-        for ii in range(self._horizon):
-            last_x = self._last_operating_point[0][ii]
-            current_x = self._current_operating_point[0][ii]
+        TOLERANCE = 1e-2 # 1e-4
+        for k in range(self._horizon):
+            last_x = self._last_operating_point[0][k]
+            current_x = self._current_operating_point[0][k]
 
             if np.linalg.norm(last_x - current_x) > TOLERANCE:
+                if verbose:
+                    print("Error: ||last_x - current_x|| = ",
+                      np.linalg.norm(last_x - current_x), ', k = ', k)
                 return False
+        return True
 
+    def _is_converged_cost(self, verbose=True):
+        """ Check if the last two operating points are close enough using costs. """
+        if self._last_operating_point is None:
+            return False
+
+        # Tolerance for comparing operating points. If all costs changes
+        # within this tolerance percentage then we've converged.
+        TOLERANCE_PERCENTAGE = 0.001
+        for ii in range(self._num_players):
+            last_cost = sum(self._last_operating_point[2][ii]).item()
+            current_cost = sum(self._current_operating_point[2][ii]).item()
+
+            if np.linalg.norm((current_cost - last_cost)/last_cost) > TOLERANCE_PERCENTAGE:
+                if verbose:
+                    print("(current_cost - last_cost)/last_cost = ",
+                      np.linalg.norm((current_cost - last_cost)/last_cost), ', ii = ', ii)
+                return False
         return True

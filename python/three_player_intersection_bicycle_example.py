@@ -63,9 +63,11 @@ from box_constraint import BoxConstraint
 from visualizer import Visualizer
 from logger import Logger
 
+from rhc_planner import RHCPlanner
+
 # General parameters.
-TIME_HORIZON = 5.0   # s
-TIME_RESOLUTION = 0.25 # s
+TIME_HORIZON = 2.5   # s
+TIME_RESOLUTION = 0.1 # s
 HORIZON_STEPS = int(TIME_HORIZON / TIME_RESOLUTION)
 LOG_DIRECTORY = "./logs/three_player/"
 
@@ -231,14 +233,14 @@ bike_proximity_cost = ProductStateProximityCost(
     BIKE_PROXIMITY_THRESHOLD,
     "bike_proximity")
 
-# Build up total costs for both players. This is basically a zero-sum game.
+# Build up total costs for both players.
 car1_cost = PlayerCost()
 car1_cost.add_cost(car1_goal_cost, "x", -1.0)
 car1_cost.add_cost(car1_polyline_cost, "x", 50.0)
 car1_cost.add_cost(car1_polyline_boundary_cost, "x", 50.0)
 car1_cost.add_cost(car1_maxv_cost, "x", 100.0)
 car1_cost.add_cost(car1_minv_cost, "x", 100.0)
-car1_cost.add_cost(car1_proximity_cost, "x", 100.0)
+car1_cost.add_cost(car1_proximity_cost, "x", 300.0)
 
 car1_player_id = 0
 car1_cost.add_cost(car1_w_cost, car1_player_id, 25.0)
@@ -250,7 +252,7 @@ car2_cost.add_cost(car2_polyline_cost, "x", 50.0)
 car2_cost.add_cost(car2_polyline_boundary_cost, "x", 50.0)
 car2_cost.add_cost(car2_maxv_cost, "x", 100.0)
 car2_cost.add_cost(car2_minv_cost, "x", 100.0)
-car2_cost.add_cost(car2_proximity_cost, "x", 100.0)
+car2_cost.add_cost(car2_proximity_cost, "x", 300.0)
 
 car2_player_id = 1
 car2_cost.add_cost(car2_w_cost, car2_player_id, 25.0)
@@ -260,13 +262,18 @@ bike_cost = PlayerCost()
 bike_cost.add_cost(bike_goal_cost, "x", -1.0)
 bike_cost.add_cost(bike_maxv_cost, "x", 100.0)
 bike_cost.add_cost(bike_minv_cost, "x", 100.0)
-bike_cost.add_cost(bike_proximity_cost, "x", 1.0)
+bike_cost.add_cost(bike_proximity_cost, "x", 300.0)
 
 bike_player_id = 2
 bike_cost.add_cost(bike_deltaf_cost, bike_player_id, 1.0)
 #bike_cost.add_cost(bike_deltaf_barrier_lower, bike_player_id, 100.0)
 #bike_cost.add_cost(bike_deltaf_barrier_upper, bike_player_id, 100.0)
 bike_cost.add_cost(bike_a_cost, bike_player_id, 1.0)
+
+# Control constraints
+car1_u_constraint = BoxConstraint(np.array([[-1,-10]]).T, np.array([[1,10]]).T)
+car2_u_constraint = BoxConstraint(np.array([[-1,-10]]).T, np.array([[1,10]]).T)
+bike_u_constraint = BoxConstraint(np.array([[-1.5,-0.5]]).T, np.array([[1.5,0.5]]).T)
 
 # Visualizer.
 visualizer = Visualizer(
@@ -289,16 +296,33 @@ if not os.path.exists(LOG_DIRECTORY):
 
 logger = Logger(os.path.join(LOG_DIRECTORY, 'intersection_bicycle_example.pkl'))
 
-# Set up ILQSolver.
-solver = ILQSolver(dynamics,
-                   [car1_cost, car2_cost, bike_cost],
-                   stacked_x0,
-                   [car1_Ps, car2_Ps, bike_Ps],
-                   [car1_alphas, car2_alphas, bike_alphas],
-                   0.1,
-                   None,
-                   logger,
-                   visualizer,
-                   None)
+# # Set up ILQSolver.
+# solver_init = ILQSolver(dynamics,
+#                    [car1_cost, car2_cost, bike_cost],
+#                    stacked_x0,
+#                    [car1_Ps, car2_Ps, bike_Ps],
+#                    [car1_alphas, car2_alphas, bike_alphas],
+#                    alpha_scaling=0.1,
+#                    max_iteration=50,
+#                    reference_deviation_weight=None,
+#                    logger=logger,
+#                    visualizer=visualizer,
+#                    u_constraints=None)
 
-solver.run()
+# solver_init.run(verbose=True)
+
+planner = RHCPlanner(dynamics,
+                     [car1_cost, car2_cost, bike_cost],
+                     stacked_x0,
+                     [car1_Ps, car2_Ps, bike_Ps], #solver_init._Ps,
+                     [car1_alphas, car2_alphas, bike_alphas], #solver_init._alphas,
+                     alpha_scaling=0.1,
+                     max_iteration=10,
+                     reference_deviation_weight=None,
+                     logger=logger,
+                     visualizer=visualizer,
+                     u_constraints=[car1_u_constraint, car2_u_constraint, bike_u_constraint],
+                     simulation_horizon=50)
+
+verbose = dict([('planner', True), ('solver', True)])
+planner.run(verbose)
