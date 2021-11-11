@@ -97,4 +97,4 @@ class ObstacleCost(Cost):
             (self._point.x, self._point.y), self._max_distance,
             color="r", fill=True, alpha=0.75)
         ax.add_artist(circle)
-        ax.text(self._point.x - 1.25, self._point.y - 1.25, "obs", fontsize=8)
+        ax.text(self._point.x - 1.25, self._point.y - 1.25, "obs in [{:.0f}, {:.0f}]".format(self._start_after_time, self._start_before_time), fontsize=8)
