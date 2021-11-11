@@ -46,7 +46,8 @@ from cost import Cost
 from point import Point
 
 class ObstacleCost(Cost):
-    def __init__(self, position_indices, point, max_distance, name=""):
+    def __init__(self, position_indices, point, max_distance, name="",
+                 start_after_time=-1, start_before_time=np.inf):
         """
         Initialize with dimension to add cost to and a max distance beyond
         which we impose no additional cost.
@@ -61,6 +62,10 @@ class ObstacleCost(Cost):
         self._x_index, self._y_index = position_indices
         self._point = point
         self._max_distance = max_distance
+
+        # time varying obstacles
+        self._start_after_time = start_after_time
+        self._start_before_time = start_before_time
         super(ObstacleCost, self).__init__(name)
 
     def __call__(self, x, k=0):
@@ -73,6 +78,11 @@ class ObstacleCost(Cost):
         :return: scalar value of cost
         :rtype: torch.Tensor
         """
+
+        # Apply time
+        if k < self._start_after_time or k > self._start_before_time:
+            return torch.zeros(1, 1, requires_grad=True).double()
+
         # Compute relative distance.
         dx = x[self._x_index, 0] - self._point.x
         dy = x[self._y_index, 0] - self._point.y

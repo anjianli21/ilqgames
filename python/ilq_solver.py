@@ -60,7 +60,8 @@ class ILQSolver(object):
                  reference_deviation_weight=None,
                  logger=None,
                  visualizer=None,
-                 u_constraints=None):
+                 u_constraints=None,
+                 TOLERANCE_PERCENTAGE=1e-3):
         """
         Initialize from dynamics, player costs, current state, and initial
         guesses for control strategies for both players.
@@ -119,6 +120,9 @@ class ILQSolver(object):
             self._logger.log("alpha_scaling", self._alpha_scaling)
             self._logger.log("horizon", self._horizon)
             self._logger.log("x0", self._x0)
+
+        # Convergence rate on cost
+        self.TOLERANCE_PERCENTAGE = TOLERANCE_PERCENTAGE
 
     def run(self, verbose=True):
         """ Run the algorithm for the specified parameters. """
@@ -303,7 +307,7 @@ class ILQSolver(object):
 
         # Tolerance for comparing operating points. If all costs changes
         # within this tolerance percentage then we've converged.
-        TOLERANCE_PERCENTAGE = 1e-3 # 1e-3
+        TOLERANCE_PERCENTAGE = self.TOLERANCE_PERCENTAGE # 1e-3
         for ii in range(self._num_players):
             last_cost = sum(self._last_operating_point[2][ii]).item()
             current_cost = sum(self._current_operating_point[2][ii]).item()
