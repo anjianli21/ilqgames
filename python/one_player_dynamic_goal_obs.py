@@ -117,12 +117,12 @@ alpha1s = [np.zeros((dynamics._u_dims[0], 1))] * HORIZON_STEPS
 # We can try different MAX_V: 15, reach for 2nd goal, 30 reach for 1st goal
 
 goal_centers = [Point(30.0, 40.0), Point(40.0, 30.0), Point(50, 20)]
-# goal_times = [[9, 10], [19, 20], [29, 30]]
+goal_times = [[9, 10], [19, 20], [29, 30]]
 # goal_times = [[9, 10], [14, 15], [29, 30]]
-goal_times = [[29, 30], [14, 15], [9, 10]]
+# goal_times = [[29, 30], [14, 15], [9, 10]]
 
-# goal_centers = [Point(40.0, 30.0), Point(50, 20)]
-# goal_times = [[14, 15], [29, 30]]
+goal_centers = [Point(40.0, 30.0)]
+goal_times = [[19, 20]]
 
 # Test consecutive goal 3
 # goal_centers = [Point(30.0, 40.0), Point(35, 35), Point(40.0, 30.0), Point(45.0, 25.0), Point(50, 20)]
@@ -150,6 +150,8 @@ goal_cost = MultiGoalCost(position_indices=(0, 1),
 obstacle_centers = [Point(30, 30), Point(40, 40), Point(50, 30)]
 obstacle_radii = [6.0, 6.0, 6.0]
 obstacle_time = [[0, 10], [10, 20], [20, 30]]
+# obstacle_time = [[0, 20], [10, 20], [20, 30]]
+
 
 # for center in range(30, 60, 10):
 #     obstacle_centers.append(Point(center+0.0, 80.0 - center))
@@ -230,7 +232,7 @@ solver = ILQSolver(dynamics,
                    [P1s],
                    [alpha1s],
                    # 0.01, # 0.01
-                   0.1,
+                   0.01,
                    2000,
                    None,
                    logger,

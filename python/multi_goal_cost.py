@@ -24,9 +24,13 @@ class MultiGoalCost(Cost):
         # Define if the robot has already catch the goal
         self._catch = False
 
+        self._iteration_time = 0
+
         super(MultiGoalCost, self).__init__(name)
 
     def __call__(self, x, k=0):
+
+        self._iteration_time += 1
 
         # if k == 0:
         #     self._catch = False
@@ -40,10 +44,17 @@ class MultiGoalCost(Cost):
         #     # return torch.zeros(
         #     #     1, 1, requires_grad=True).double()
 
+
         if self._catch:
-            if k > self._catch_k:
-                return torch.zeros(
-                    1, 1, requires_grad=True).double()
+            if self._iteration_time < 5000:
+                print(self._iteration_time)
+                if k > self._catch_k:
+                    return torch.zeros(
+                        1, 1, requires_grad=True).double()
+            else:
+                if k != self._catch_k:
+                    return torch.zeros(
+                        1, 1, requires_grad=True).double()
 
         relative_squared_distance = np.inf
 
