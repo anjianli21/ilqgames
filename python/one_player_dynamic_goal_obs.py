@@ -34,8 +34,8 @@ TIME_HORIZON = 3   # s
 TIME_RESOLUTION = 0.1 # s, default: 0.1
 HORIZON_STEPS = int(TIME_HORIZON / TIME_RESOLUTION)
 LOG_DIRECTORY = "./logs/one_player_dynamic_goal_obs/"
-MAX_V = 15.0 # m/s
-# MAX_V = 5.0 # m/s
+# MAX_V = 15.0 # m/s
+MAX_V = 5.0 # m/s
 
 # Create dynamics.
 car1 = Unicycle4D(T=TIME_RESOLUTION)
@@ -47,13 +47,19 @@ theta0 = np.pi / 3 # 60 degree heading
 v0 = 5.0             # 5 m/s initial speed
 
 
-# theta0 = np.pi / 6
-# v0 = 5.0
+theta0 = np.pi / 3
+v0 = 5.0
 
 # x0 = np.array([[30.0],
 #                [30.0],
 #                [theta0],
 #                [v0]])
+
+# New start
+x0 = np.array([[20.0],
+               [20.0],
+               [theta0],
+               [v0]])
 
 # New start
 x0 = np.array([[20.0],
@@ -108,8 +114,15 @@ alpha1s = [np.zeros((dynamics._u_dims[0], 1))] * HORIZON_STEPS
 # goal_times = [[9, 10], [19, 20], [29, 30]]
 
 # Test consecutive goal 2
+# We can try different MAX_V: 15, reach for 2nd goal, 30 reach for 1st goal
+
 goal_centers = [Point(30.0, 40.0), Point(40.0, 30.0), Point(50, 20)]
-goal_times = [[9, 10], [19, 20], [29, 30]]
+# goal_times = [[9, 10], [19, 20], [29, 30]]
+# goal_times = [[9, 10], [14, 15], [29, 30]]
+goal_times = [[29, 30], [14, 15], [9, 10]]
+
+# goal_centers = [Point(40.0, 30.0), Point(50, 20)]
+# goal_times = [[14, 15], [29, 30]]
 
 # Test consecutive goal 3
 # goal_centers = [Point(30.0, 40.0), Point(35, 35), Point(40.0, 30.0), Point(45.0, 25.0), Point(50, 20)]
@@ -165,14 +178,17 @@ v_cost_upper = SemiquadraticCost(
 v_cost_lower = SemiquadraticCost(
     dimension=3, threshold=0, oriented_right=False, name="v_cost_lower")
 
+# control constraint
+player1_constraint = BoxConstraint(np.array([[0]]).T, np.array([[MAX_V]]).T)
+
 # OBSTACLE_WEIGHT = 100.0 # HJI: 100
 OBSTACLE_WEIGHT = 200.0 # HJI: 100
 GOAL_WEIGHT = 100.0 # HJI: 400
 D_WEIGHT = 1000.0 # HJI: 1000
 U_WEIGHT = 1.0 # HJI: 100
 
-# V_WEIGHT = 100.0
-V_WEIGHT = 1.0 # HJI: 50
+V_WEIGHT = 1.0
+# V_WEIGHT = 50.0 # HJI: 50
 
 # Build up total costs for both players. This is basically a zero-sum game.
 player1_cost = PlayerCost()
@@ -185,8 +201,6 @@ player1_cost.add_cost(v_cost_lower, "x", V_WEIGHT)
 player1_cost.add_cost(w_cost, 0, U_WEIGHT)
 player1_cost.add_cost(a_cost, 0, U_WEIGHT)
 
-# control constraint
-player1_constraint = BoxConstraint(np.array([[0]]).T, np.array([[MAX_V]]).T)
 
 # Visualizer.
 # visualizer = None
@@ -215,7 +229,8 @@ solver = ILQSolver(dynamics,
                    x0,
                    [P1s],
                    [alpha1s],
-                   0.01, # 0.01
+                   # 0.01, # 0.01
+                   0.1,
                    2000,
                    None,
                    logger,

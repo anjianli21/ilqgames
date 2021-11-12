@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ad017659-26be-4787-bcf0-aed02ce5bb02" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obstacle_cost.py" beforeDir="false" afterPath="$PROJECT_DIR$/obstacle_cost.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/multi_goal_cost.py" beforeDir="false" afterPath="$PROJECT_DIR$/multi_goal_cost.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/one_player_dynamic_goal_obs.py" beforeDir="false" afterPath="$PROJECT_DIR$/one_player_dynamic_goal_obs.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -13,14 +12,14 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.72745097">
+    <splitter split-orientation="horizontal" split-proportion="0.61053985">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/one_player_dynamic_goal_obs.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="204">
-                  <caret line="110" column="68" selection-start-line="110" selection-start-column="68" selection-end-line="110" selection-end-column="68" />
+                <state relative-caret-position="401">
+                  <caret line="121" column="39" selection-start-line="121" selection-start-column="39" selection-end-line="121" selection-end-column="39" />
                   <folding>
                     <element signature="e#243#252#0" expanded="true" />
                   </folding>
@@ -29,10 +28,19 @@
             </entry>
           </file>
           <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/unicycle_4d.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="-128">
+                  <caret line="51" column="8" selection-start-line="51" selection-start-column="8" selection-end-line="51" selection-end-column="8" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/three_player_intersection_bicycle_example.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-697">
-                  <caret line="274" column="28" lean-forward="true" selection-start-line="274" selection-end-line="275" />
+                <state relative-caret-position="312">
+                  <caret line="274" column="17" selection-start-line="274" selection-end-line="274" selection-end-column="17" />
                   <folding>
                     <element signature="e#1848#1857#0" expanded="true" />
                   </folding>
@@ -56,47 +64,14 @@
       </split-first>
       <split-second>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/proximity_cost.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-437">
-                  <caret line="59" column="26" selection-start-line="59" selection-start-column="21" selection-end-line="59" selection-end-column="26" />
-                  <folding>
-                    <element signature="e#1905#1917#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/multi_goal_cost.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="269">
-                  <caret line="39" selection-start-line="39" selection-end-line="40" selection-end-column="52" />
+                <state relative-caret-position="489">
+                  <caret line="62" column="49" selection-start-line="62" selection-start-column="49" selection-end-line="62" selection-end-column="49" />
                   <folding>
                     <element signature="e#83#95#0" expanded="true" />
                   </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/ilq_solver.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="542">
-                  <caret line="263" column="47" selection-start-line="263" selection-start-column="33" selection-end-line="263" selection-end-column="47" />
-                  <folding>
-                    <element signature="e#1778#1796#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/product_state_proximity_cost.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-504">
-                  <caret line="33" column="30" selection-start-line="33" selection-start-column="30" selection-end-line="33" selection-end-column="30" />
                 </state>
               </provider>
             </entry>
@@ -121,9 +96,9 @@
       <find>_u_</find>
       <find>r</find>
       <find>Point</find>
-      <find>MAX_V</find>
-      <find>car1_u_constraint</find>
       <find>u_constraints</find>
+      <find>car1_u_constraint</find>
+      <find>MAX_V</find>
       <find>_u_constraints</find>
     </findStrings>
   </component>
@@ -140,15 +115,16 @@
         <option value="$PROJECT_DIR$/proximity_cost.py" />
         <option value="$PROJECT_DIR$/obstacle_cost.py" />
         <option value="$PROJECT_DIR$/ilq_solver.py" />
-        <option value="$PROJECT_DIR$/multi_goal_cost.py" />
         <option value="$PROJECT_DIR$/one_player_dynamic_goal_obs.py" />
+        <option value="$PROJECT_DIR$/multi_goal_cost.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds">
+    <option name="x" value="-1920" />
     <option name="y" value="25" />
-    <option name="width" value="1440" />
-    <option name="height" value="875" />
+    <option name="width" value="1920" />
+    <option name="height" value="1055" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -280,24 +256,24 @@
       <workItem from="1636493652377" duration="11025000" />
       <workItem from="1636561130600" duration="5436000" />
       <workItem from="1636580998097" duration="10817000" />
-      <workItem from="1636640665595" duration="13113000" />
+      <workItem from="1636640665595" duration="25378000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="41363000" />
+    <option name="totallyTimeSpent" value="53628000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="26" width="1440" height="875" extended-state="6" />
+    <frame x="-1920" y="25" width="1920" height="1055" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2644092" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16702355" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.24946696" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.7585752" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.31926122" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -305,13 +281,13 @@
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.14907652" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.13006397" />
       <window_info anchor="bottom" id="Python Console" order="12" weight="0.3298153" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Remote Host" order="3" />
-      <window_info anchor="right" id="SciView" order="4" weight="0.43011528" />
+      <window_info anchor="right" id="SciView" order="4" weight="0.25072047" />
       <window_info anchor="right" id="Database" order="5" />
     </layout>
   </component>
@@ -328,14 +304,19 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/proximity_cost.py</url>
-          <line>102</line>
-          <option name="timeStamp" value="36" />
+          <line>91</line>
+          <option name="timeStamp" value="41" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/ilq_solver.py</url>
+          <line>208</line>
+          <option name="timeStamp" value="49" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/python$one_player_dynamic_goal_obs.coverage" NAME="one_player_dynamic_goal_obs Coverage Results" MODIFIED="1636658938726" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/python$one_player_dynamic_goal_obs.coverage" NAME="one_player_dynamic_goal_obs Coverage Results" MODIFIED="1636668849305" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/python$three_player_intersection_bicycle_example.coverage" NAME="three_player_intersection_bicycle_example Coverage Results" MODIFIED="1636582750134" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/python$two_player_unicycle_4d_example.coverage" NAME="two_player_unicycle_4d_example Coverage Results" MODIFIED="1636582338945" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
@@ -356,11 +337,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/rhc.planner.py" />
-    <entry file="file://$PROJECT_DIR$/solve_lq_game.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2330" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/quadratic_polyline_cost.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-159">
@@ -427,13 +403,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/unicycle_4d.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="214">
-          <caret line="67" selection-start-line="67" selection-end-line="67" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/_pydev_imps/_pydev_execfile.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="209">
@@ -445,23 +414,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1767">
           <caret line="109" column="31" selection-start-line="109" selection-start-column="31" selection-end-line="109" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/product_state_proximity_cost.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-504">
-          <caret line="33" column="30" selection-start-line="33" selection-start-column="30" selection-end-line="33" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/proximity_cost.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-437">
-          <caret line="59" column="26" selection-start-line="59" selection-start-column="21" selection-end-line="59" selection-end-column="26" />
-          <folding>
-            <element signature="e#1905#1917#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -484,18 +436,52 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/three_player_intersection_bicycle_example.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-697">
-          <caret line="274" column="28" lean-forward="true" selection-start-line="274" selection-end-line="275" />
+        <state relative-caret-position="312">
+          <caret line="274" column="17" selection-start-line="274" selection-end-line="274" selection-end-column="17" />
           <folding>
             <element signature="e#1848#1857#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/unicycle_4d.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-128">
+          <caret line="51" column="8" selection-start-line="51" selection-start-column="8" selection-end-line="51" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/proximity_cost.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-157">
+          <caret line="59" column="26" selection-start-line="59" selection-start-column="21" selection-end-line="59" selection-end-column="26" />
+          <folding>
+            <element signature="e#1905#1917#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/line_segment.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/solve_lq_game.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2031">
+          <caret line="44" column="4" selection-start-line="44" selection-start-column="4" selection-end-line="44" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/product_state_proximity_cost.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-504">
+          <caret line="33" column="30" selection-start-line="33" selection-start-column="30" selection-end-line="33" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/ilq_solver.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="542">
-          <caret line="263" column="47" selection-start-line="263" selection-start-column="33" selection-end-line="263" selection-end-column="47" />
+        <state relative-caret-position="175">
+          <caret line="238" column="33" lean-forward="true" selection-start-line="238" selection-start-column="33" selection-end-line="238" selection-end-column="33" />
           <folding>
             <element signature="e#1778#1796#0" expanded="true" />
           </folding>
@@ -504,27 +490,27 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/player_cost.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-41">
-          <caret line="74" selection-start-line="74" selection-end-line="74" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/multi_goal_cost.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="269">
-          <caret line="39" selection-start-line="39" selection-end-line="40" selection-end-column="52" />
-          <folding>
-            <element signature="e#83#95#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="152">
+          <caret line="141" selection-start-line="141" selection-end-line="141" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/one_player_dynamic_goal_obs.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="110" column="68" selection-start-line="110" selection-start-column="68" selection-end-line="110" selection-end-column="68" />
+        <state relative-caret-position="401">
+          <caret line="121" column="39" selection-start-line="121" selection-start-column="39" selection-end-line="121" selection-end-column="39" />
           <folding>
             <element signature="e#243#252#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/multi_goal_cost.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="489">
+          <caret line="62" column="49" selection-start-line="62" selection-start-column="49" selection-end-line="62" selection-end-column="49" />
+          <folding>
+            <element signature="e#83#95#0" expanded="true" />
           </folding>
         </state>
       </provider>

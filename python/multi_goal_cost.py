@@ -27,18 +27,25 @@ class MultiGoalCost(Cost):
         super(MultiGoalCost, self).__init__(name)
 
     def __call__(self, x, k=0):
-        if k == 0:
-            self._catch = False
-            self._print = False
 
-        relative_squared_distance = np.inf
+        # if k == 0:
+        #     self._catch = False
+        #     self._print = False
+        #
+        #
+        # if self._catch:
+        #     if self._print == False:
+        #         print("trajectory has reach the goal at time", k)
+        #     self._print = True
+        #     # return torch.zeros(
+        #     #     1, 1, requires_grad=True).double()
 
         if self._catch:
-            if self._print == False:
-                print("trajectory has reach the goal at time", k)
-            self._print = True
-            # return torch.zeros(
-            #     1, 1, requires_grad=True).double()
+            if k > self._catch_k:
+                return torch.zeros(
+                    1, 1, requires_grad=True).double()
+
+        relative_squared_distance = np.inf
 
         # First check in the current time, which goal is in effect
         for ii in range(len(self._time_list)):
@@ -52,6 +59,8 @@ class MultiGoalCost(Cost):
 
         if relative_squared_distance < 2:
             self._catch = True
+            self._catch_k = k
+            print("already catch the goal at", k)
 
         if relative_squared_distance == np.inf:
             # Means no goal is in effect
