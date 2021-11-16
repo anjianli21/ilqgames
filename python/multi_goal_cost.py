@@ -32,29 +32,27 @@ class MultiGoalCost(Cost):
 
         self._iteration_time += 1
 
-        # if k == 0:
-        #     self._catch = False
-        #     self._print = False
-        #
-        #
-        # if self._catch:
-        #     if self._print == False:
-        #         print("trajectory has reach the goal at time", k)
-        #     self._print = True
-        #     # return torch.zeros(
-        #     #     1, 1, requires_grad=True).double()
-
+        if k == 0:
+            self._catch = False
+            self._print = False
 
         if self._catch:
-            if self._iteration_time < 5000:
-                print(self._iteration_time)
-                if k > self._catch_k:
-                    return torch.zeros(
-                        1, 1, requires_grad=True).double()
-            else:
-                if k != self._catch_k:
-                    return torch.zeros(
-                        1, 1, requires_grad=True).double()
+            if self._print == False:
+                print("trajectory has reach the goal at time", k)
+            self._print = True
+            # return torch.zeros(
+            #     1, 1, requires_grad=True).double()
+
+        # if self._catch:
+        #     if self._iteration_time < 5000:
+        #         print(self._iteration_time)
+        #         if k > self._catch_k:
+        #             return torch.zeros(
+        #                 1, 1, requires_grad=True).double()
+        #     else:
+        #         if k != self._catch_k:
+        #             return torch.zeros(
+        #                 1, 1, requires_grad=True).double()
 
         relative_squared_distance = np.inf
 

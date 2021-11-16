@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ad017659-26be-4787-bcf0-aed02ce5bb02" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/multi_goal_cost.py" beforeDir="false" afterPath="$PROJECT_DIR$/multi_goal_cost.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/one_player_dynamic_goal_obs.py" beforeDir="false" afterPath="$PROJECT_DIR$/one_player_dynamic_goal_obs.py" afterDir="false" />
     </list>
@@ -12,14 +13,14 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.59832907">
+    <splitter split-orientation="horizontal" split-proportion="0.49033505">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/one_player_dynamic_goal_obs.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="259">
-                  <caret line="124" column="22" selection-start-line="124" selection-start-column="22" selection-end-line="124" selection-end-column="22" />
+                <state relative-caret-position="416">
+                  <caret line="37" column="9" selection-start-line="37" selection-start-column="9" selection-end-line="37" selection-end-column="9" />
                   <folding>
                     <element signature="e#243#252#0" expanded="true" />
                   </folding>
@@ -30,7 +31,7 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/unicycle_4d.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-128">
+                <state relative-caret-position="266">
                   <caret line="51" column="8" selection-start-line="51" selection-start-column="8" selection-end-line="51" selection-end-column="8" />
                 </state>
               </provider>
@@ -39,7 +40,7 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/three_player_intersection_bicycle_example.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="312">
+                <state relative-caret-position="4731">
                   <caret line="274" column="17" selection-start-line="274" selection-end-line="274" selection-end-column="17" />
                   <folding>
                     <element signature="e#1848#1857#0" expanded="true" />
@@ -51,7 +52,7 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/rhc_planner.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="381">
+                <state relative-caret-position="1216">
                   <caret line="76" column="64" selection-start-line="76" selection-start-column="31" selection-end-line="76" selection-end-column="64" />
                   <folding>
                     <element signature="e#0#9#0" expanded="true" />
@@ -64,13 +65,25 @@
       </split-first>
       <split-second>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/multi_goal_cost.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="197">
-                  <caret line="49" column="43" selection-start-line="49" selection-start-column="43" selection-end-line="49" selection-end-column="43" />
+                <state relative-caret-position="-23">
+                  <caret line="38" column="23" selection-start-line="38" selection-start-column="23" selection-end-line="38" selection-end-column="23" />
                   <folding>
                     <element signature="e#83#95#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/ilq_solver.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="5871">
+                  <caret line="309" column="56" selection-start-line="309" selection-start-column="36" selection-end-line="309" selection-end-column="56" />
+                  <folding>
+                    <element signature="e#1778#1796#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -132,6 +145,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -143,7 +157,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -256,17 +269,19 @@
       <workItem from="1636493652377" duration="11025000" />
       <workItem from="1636561130600" duration="5436000" />
       <workItem from="1636580998097" duration="10817000" />
-      <workItem from="1636640665595" duration="27019000" />
+      <workItem from="1636640665595" duration="27058000" />
+      <workItem from="1637028611893" duration="865000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="55269000" />
+    <option name="totallyTimeSpent" value="56173000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1920" y="25" width="1920" height="1055" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16702355" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16916488" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -280,7 +295,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.26226014" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.3326226" />
       <window_info anchor="bottom" id="Python Console" order="12" weight="0.3298153" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -423,33 +438,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/rhc_planner.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="381">
-          <caret line="76" column="64" selection-start-line="76" selection-start-column="31" selection-end-line="76" selection-end-column="64" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/three_player_intersection_bicycle_example.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="274" column="17" selection-start-line="274" selection-end-line="274" selection-end-column="17" />
-          <folding>
-            <element signature="e#1848#1857#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/unicycle_4d.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-128">
-          <caret line="51" column="8" selection-start-line="51" selection-start-column="8" selection-end-line="51" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/proximity_cost.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-157">
@@ -477,16 +465,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ilq_solver.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="238" column="33" lean-forward="true" selection-start-line="238" selection-start-column="33" selection-end-line="238" selection-end-column="33" />
-          <folding>
-            <element signature="e#1778#1796#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/player_cost.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="152">
@@ -494,20 +472,57 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/three_player_intersection_bicycle_example.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4731">
+          <caret line="274" column="17" selection-start-line="274" selection-end-line="274" selection-end-column="17" />
+          <folding>
+            <element signature="e#1848#1857#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/rhc_planner.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1216">
+          <caret line="76" column="64" selection-start-line="76" selection-start-column="31" selection-end-line="76" selection-end-column="64" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/multi_goal_cost.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="197">
-          <caret line="49" column="43" selection-start-line="49" selection-start-column="43" selection-end-line="49" selection-end-column="43" />
+        <state relative-caret-position="-23">
+          <caret line="38" column="23" selection-start-line="38" selection-start-column="23" selection-end-line="38" selection-end-column="23" />
           <folding>
             <element signature="e#83#95#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/unicycle_4d.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="51" column="8" selection-start-line="51" selection-start-column="8" selection-end-line="51" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ilq_solver.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5871">
+          <caret line="309" column="56" selection-start-line="309" selection-start-column="36" selection-end-line="309" selection-end-column="56" />
+          <folding>
+            <element signature="e#1778#1796#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/one_player_dynamic_goal_obs.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="259">
-          <caret line="124" column="22" selection-start-line="124" selection-start-column="22" selection-end-line="124" selection-end-column="22" />
+        <state relative-caret-position="416">
+          <caret line="37" column="9" selection-start-line="37" selection-start-column="9" selection-end-line="37" selection-end-column="9" />
           <folding>
             <element signature="e#243#252#0" expanded="true" />
           </folding>

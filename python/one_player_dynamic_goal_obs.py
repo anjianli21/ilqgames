@@ -35,7 +35,7 @@ TIME_RESOLUTION = 0.1 # s, default: 0.1
 HORIZON_STEPS = int(TIME_HORIZON / TIME_RESOLUTION)
 LOG_DIRECTORY = "./logs/one_player_dynamic_goal_obs/"
 # MAX_V = 15.0 # m/s
-MAX_V = 5.0 # m/s
+MAX_V = 15.0 # m/s
 
 # Create dynamics.
 car1 = Unicycle4D(T=TIME_RESOLUTION)
@@ -121,8 +121,9 @@ goal_times = [[9, 10], [19, 20], [29, 30]]
 # goal_times = [[9, 10], [14, 15], [29, 30]]
 # goal_times = [[29, 30], [14, 15], [9, 10]]
 
-goal_centers = [Point(40.0, 30.0)]
-goal_times = [[19, 20]]
+# Only one goal at 20
+# goal_centers = [Point(40.0, 30.0)]
+# goal_times = [[19, 20]]
 
 # Test consecutive goal 3
 # goal_centers = [Point(30.0, 40.0), Point(35, 35), Point(40.0, 30.0), Point(45.0, 25.0), Point(50, 20)]
@@ -232,13 +233,13 @@ solver = ILQSolver(dynamics,
                    [P1s],
                    [alpha1s],
                    # 0.01, # 0.01
-                   0.01,
-                   2000,
+                   0.1,
+                   200,
                    None,
                    logger,
                    visualizer,
                    # u_constraints=[player1_constraint],
-                   TOLERANCE_PERCENTAGE=1e-7)
+                   TOLERANCE_PERCENTAGE=1e-4)
 
 def handle_sigint(sig, frame):
     print("SIGINT caught! Saving log data...")
