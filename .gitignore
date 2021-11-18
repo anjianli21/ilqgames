@@ -123,4 +123,5 @@ compile_commands.json
 # Anjian result
 result_plots/
 python/.idea
+python/.idea/workspace.xml
 
